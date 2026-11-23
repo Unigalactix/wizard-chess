@@ -350,7 +350,7 @@
     if (marksEl) return marksEl;
     marksEl = document.createElement('div');
     marksEl.id = 'marks';
-    $('stage').appendChild(marksEl);
+    document.body.appendChild(marksEl);
     return marksEl;
   }
   function clearMarks() {
@@ -373,11 +373,10 @@
       // Markers live in a screen-space overlay above the figures: in the
       // tilted 3D view the tall pieces hide anything drawn in the plane.
       var mk = ensureMarks();
-      var sr = $('stage').getBoundingClientRect();
       function place(el, sqEl, scale) {
         var r = sqEl.getBoundingClientRect();
-        el.style.left = (r.left - sr.left + r.width / 2) + 'px';
-        el.style.top = (r.top - sr.top + r.height / 2) + 'px';
+        el.style.left = (r.left + r.width / 2) + 'px';
+        el.style.top = (r.top + r.height / 2) + 'px';
         el.style.width = (r.width * scale) + 'px';
         el.style.height = (r.width * scale) + 'px';
         mk.appendChild(el);
@@ -399,6 +398,7 @@
   }
 
   window.addEventListener('resize', function () { if (selected >= 0) markSquares(); });
+  window.addEventListener('scroll', function () { if (selected >= 0) markSquares(); }, true);
 
   function renderTrays() {
     var counts = { w: { P: 0, N: 0, B: 0, R: 0, Q: 0 }, b: { P: 0, N: 0, B: 0, R: 0, Q: 0 } };
