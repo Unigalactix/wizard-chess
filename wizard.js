@@ -488,8 +488,8 @@
     // strike
     duelAtk.animate([
       { transform: 'translateX(0) rotate(0deg)' },
-      { transform: 'translateX(17%) rotate(3.5deg)', offset: 0.42 },
-      { transform: 'translateX(13%) rotate(1deg)', offset: 0.68 },
+      { transform: 'translateX(23%) rotate(4.5deg) scale(1.04)', offset: 0.42 },
+      { transform: 'translateX(18%) rotate(1deg)', offset: 0.68 },
       { transform: 'translateX(0) rotate(0deg)' }
     ], { duration: u * 0.95, easing: 'ease-out' });
     duelSlash.animate([
@@ -498,7 +498,7 @@
       { opacity: 0 }
     ], { duration: u * 0.5, delay: u * 0.3, easing: 'ease-out' });
     duelFlash.animate([
-      { opacity: 0 }, { opacity: 0.5, offset: 0.15 }, { opacity: 0 }
+      { opacity: 0 }, { opacity: 0.68, offset: 0.15 }, { opacity: 0 }
     ], { duration: u * 0.45, delay: u * 0.3 });
     stageEl.animate([
       { transform: 'translateX(0)' }, { transform: 'translateX(-7px)', offset: 0.3 },
@@ -516,8 +516,8 @@
       { transform: 'rotate(0deg) scaleY(1)', opacity: 1 },
       { transform: 'rotate(-4deg) scaleY(0.9)', opacity: 0.85, offset: 0.4 },
       { transform: 'rotate(5deg) scaleY(0.66) translateY(10%)', opacity: 0.2 }
-    ], { duration: u * 1.1, easing: 'ease-in', fill: 'forwards' });
-    await sleep(u * 1.1);
+    ], { duration: u * 1.35, easing: 'ease-in', fill: 'forwards' });
+    await sleep(u * 1.35);
     duelEl.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 190, fill: 'forwards' });
     await sleep(190);
     duelEl.classList.add('hidden');
@@ -752,6 +752,7 @@
       if (game.unmake()) sanHistory.pop();
     }
     selected = -1; targets = [];
+    commandNote('');
     renderPieces(); markSquares(); renderTrays(); renderStatus(); renderMoves();
   });
   [modeEl, sideEl].forEach(function (el) { el.addEventListener('change', newGame); });
