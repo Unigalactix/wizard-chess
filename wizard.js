@@ -71,11 +71,11 @@
       '<path d="M93 76 Q108 90 101 118 Q94 105 89 95 Z" fill="' + P.hair + '"/>' +
       '<path d="M28 84 Q29 67 52 65 L84 65 Q99 67 98 84 Q97 101 84 104 L35 104 Q27 99 28 84 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.8"/>' +
       // legs + hooves
-      '<rect x="35" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
-      '<rect x="48" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
-      '<rect x="74" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
-      '<rect x="86" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
-      '<path d="M33 143 h11.5 v6 h-11.5 Z M46 143 h11.5 v6 h-11.5 Z M72 143 h11.5 v6 h-11.5 Z M84 143 h11.5 v6 h-11.5 Z" fill="#33302a"/>' +
+      '<rect x="35" y="100" width="7.6" height="51" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="48" y="100" width="7.6" height="51" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="74" y="100" width="7.6" height="51" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="86" y="100" width="7.6" height="51" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<path d="M33 149.5 h11.5 v6.5 h-11.5 Z M46 149.5 h11.5 v6.5 h-11.5 Z M72 149.5 h11.5 v6.5 h-11.5 Z M84 149.5 h11.5 v6.5 h-11.5 Z" fill="#33302a"/>' +
       // neck, head, ears, mane
       '<path d="M36 72 Q23 60 20 41 L35 34 Q46 45 47 63 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
       '<path d="M41 31 Q49 48 47 66 L38 60 Q43 45 36 35 Z" fill="' + P.hair + '"/>' +
