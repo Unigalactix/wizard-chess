@@ -3,15 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Colour Chess — Battle Chess, in Colour</title>
-<meta name="description" content="A colourful Battle-Chess-style game: action-figure pieces with faces that walk the board and duel on captures, seen from the player's point of view. Play offline with a friend on one board, or against the computer.">
-<link rel="stylesheet" href="style.css">
+<title>Wizard Chess — the living stone game</title>
+<meta name="description" content="Wizard Chess: living stone pieces that walk the board and smash their enemies. Command them by tap or by typed order. Offline 2-player and 1-vs-computer.">
+<link rel="stylesheet" href="wizard.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
 </head>
 <body>
+  <div class="candles" aria-hidden="true">
+    <span class="candle" style="left:6%"></span>
+    <span class="candle" style="left:15%"></span>
+    <span class="candle tall" style="left:26%"></span>
+    <span class="candle" style="left:72%"></span>
+    <span class="candle tall" style="left:83%"></span>
+    <span class="candle" style="left:93%"></span>
+  </div>
+
   <header>
-    <h1><span class="c1">Colour</span> <span class="c2">Chess</span></h1>
-    <p class="tagline">Battle Chess, in colour — action-figure pieces that <em>walk</em> the board and <em>duel</em> on captures, from your side of the table.</p>
+    <h1>Wizard Chess</h1>
+    <p class="tagline">The pieces are alive. They walk where they are commanded — and they do not capture politely.</p>
   </header>
 
   <main>
@@ -21,9 +30,27 @@
         <div id="stage">
           <div id="board" role="grid" aria-label="Chess board"></div>
         </div>
+        <div id="duel" class="hidden" aria-hidden="true">
+          <div class="duel-fig figure" id="duel-atk" data-expr="angry"><div class="holder"></div></div>
+          <svg class="duel-slash" viewBox="0 0 100 100" aria-hidden="true">
+            <path d="M12 80 Q48 30 90 14" />
+            <path d="M22 90 Q54 44 94 28" />
+          </svg>
+          <div class="duel-fig figure" id="duel-vic" data-expr="scared">
+            <div class="holder"></div>
+            <svg class="duel-cracks" viewBox="0 0 120 190" aria-hidden="true">
+              <path d="M60 88 L47 107 L51 127 M47 107 L33 112" />
+              <path d="M60 88 L75 103 L70 125 M75 103 L88 108" />
+              <path d="M60 88 L57 68 L66 52" />
+              <path d="M60 88 L41 90 L27 101" />
+              <path d="M60 88 L81 85 L94 95" />
+            </svg>
+          </div>
+          <div class="duel-flash"></div>
+        </div>
       </div>
       <div class="tray" id="tray-bottom" aria-label="Captured pieces"></div>
-      <div id="status" role="status">Sun to move</div>
+      <div id="status" role="status">Ivory to move</div>
     </section>
 
     <aside class="panel">
@@ -37,8 +64,8 @@
         </label>
         <label class="row" id="side-row"><span>Play as</span>
           <select id="side">
-            <option value="w" selected>Sun (first)</option>
-            <option value="b">Moon (second)</option>
+            <option value="w" selected>Ivory (first)</option>
+            <option value="b">Onyx (second)</option>
           </select>
         </label>
         <label class="row" id="diff-row"><span>Difficulty</span>
@@ -56,13 +83,23 @@
       </div>
 
       <div class="card">
+        <h2>Command your pieces</h2>
+        <p class="dim">As in the films, the pieces answer to orders. Type one and press Enter — <em>“knight to f3”</em>, <em>“pawn takes e5”</em>, or simply <em>“e2 to e4”</em>.</p>
+        <div class="cmd-row">
+          <input id="command" type="text" placeholder="Knight to f3…" autocomplete="off" spellcheck="false">
+          <button id="command-go">Move</button>
+        </div>
+        <p id="command-note" class="cmd-note" role="status"></p>
+      </div>
+
+      <div class="card">
         <h2>Feel</h2>
         <label class="row"><span>Piece actions</span>
           <select id="speed">
             <option value="0">Instant</option>
             <option value="260">Fast</option>
             <option value="430" selected>Normal</option>
-            <option value="750">Battle Chess slow</option>
+            <option value="750">Ceremonial slow</option>
           </select>
         </label>
         <label class="row check"><span>Sound</span>
@@ -77,8 +114,8 @@
 
       <div class="card how">
         <h2>How it plays</h2>
-        <p>Tap a piece, then tap a glowing square. The pieces are little action figures — they <strong>walk</strong> square by square like the classic Battle Chess, pull faces when they're picked, panic when they're about to be taken, and duel on captures. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote.</p>
-        <p class="dim">You watch from your own side of the board, player POV — your army stands big in front of you, theirs shrinks into the distance. Inspired by the Battle Chess reel — rebuilt from scratch, in colour. No accounts, no servers: everything runs on this page.</p>
+        <p>Tap a piece, then tap a marked square — or command it by name. The stone soldiers walk square by square, pull a face when picked, panic when cornered, and every capture cuts to a close-up: the attacker strikes, the victim cracks and crumbles to rubble. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote.</p>
+        <p class="dim">You watch from your own side of the board — your army stands before you, theirs recedes down the hall. A fan-made tribute to wizard's chess, built from scratch. No accounts, no servers: everything runs on this page.</p>
       </div>
     </aside>
   </main>
@@ -91,10 +128,10 @@
   </div>
 
   <footer>
-    <p>Colour Chess — an original fan-made tribute to animated chess. Built with vanilla JS.</p>
+    <p>Wizard Chess — living stone, commanded by you.</p>
   </footer>
 
   <script src="engine.js"></script>
-  <script src="app.js"></script>
+  <script src="wizard.js"></script>
 </body>
 </html>
