@@ -1,25 +1,32 @@
-# ♞ Colour Chess
+# ♞ Wizard Chess
 
-**Battle Chess, in colour.** An original, fan-made tribute to the classic animated
-chess game — rebuilt from scratch in vanilla JavaScript. The pieces are little
-**action figures with faces**, drawn as SVG characters (a helmeted pawn soldier, a
-horse-helmed knight, a mitred bishop, a tower rook with a face, a crowned queen and
-a bearded king). They **idle, blink and bob in place, walk square by square** across
-the board, and **duel when they capture** — the attacker goes angry, the victim
-panics. You watch from **your own side of the board**: a tilted, player-POV view
-where your army stands big in front of you and theirs shrinks into the distance.
-
-![style](https://img.shields.io/badge/style-rainbow%20board%20%E2%80%A2%20Sun%20vs%20Moon-8b5cf6)
+**The living stone game.** A playable take on wizard's chess: the pieces are
+stone soldiers and royals who **walk the board on their own**, and when one
+takes another, it does not go politely — the attacker strikes, the victim
+**cracks and crumbles to rubble**. You watch from your own side of the board,
+by candlelight.
 
 ## Play it
 
-**Live:** https://unigalactix.github.io/colour-chess/
+**Live:** https://unigalactix.github.io/wizard-chess/
+
+**Repo:** https://github.com/Unigalactix/wizard-chess
 
 Or open `index.html` in any browser — no build step, no server, no accounts.
 
+## Command them
+
+As in the stories, the pieces answer to orders. Type one into the command box:
+
+- `knight to f3`
+- `pawn takes e5`
+- `e2 to e4`
+
+…or just tap a piece and then a marked square.
+
 ## Modes
 
-- **1 Player vs Computer** — play as Sun (first) or Moon (second), three
+- **1 Player vs Computer** — play as Ivory (first) or Onyx (second), three
   difficulty levels (Easy / Medium / Hard).
 - **2 Players — offline** — both sides on the same board, pass-and-play.
 
@@ -27,18 +34,18 @@ Or open `index.html` in any browser — no build step, no server, no accounts.
 
 - Full chess rules: legal moves, check, checkmate, stalemate, castling,
   en passant, promotion (with a picker), fifty-move and insufficient-material draws.
-- Battle-Chess-style actions:
-  - pieces **walk** their path square by square (knights hop),
-  - **capture duels** — the attacker lunges with an angry face, the victim panics,
-    shakes, sparks fly, it falls,
-  - **expressions everywhere** — determined when picked, focused while walking,
-    a worried king in check, winners celebrate and losers go dizzy at game end,
-  - idle bobbing and blinking, last-move and check highlights, legal-move dots
-    and capture rings.
-- Animation speed control — including a loving "Battle Chess slow" setting.
-- Tiny synthesized sound effects (WebAudio, no audio files).
-- Move list in algebraic notation, captured-piece trays with material score.
-- Undo, board flip, responsive layout for phones.
+- Living stone pieces, drawn from scratch as SVG characters — a foot-soldier
+  pawn, an armoured knight, a pointed-hat wizard (bishop), a tower guardian
+  (rook), a queen and a bearded king — each with a face:
+  - **determined** when you pick them, **focused** while walking,
+  - **angry** when they strike, **scared** when cornered,
+  - a **worried** king in check, **celebrating** winners and **dizzy** losers.
+- Capture duels in close-up: the charge, the blow, the cracks, the crumble.
+- Pieces walk square by square (knights hop), seen from a tilted,
+  player-point-of-view board — your army in front of you, theirs down the hall.
+- Animation speed control, tiny synthesized sound effects (WebAudio),
+  move list in algebraic notation, captured-piece trays with material score,
+  undo and board flip. Responsive down to phone size.
 
 ## How it works
 
@@ -46,12 +53,13 @@ Or open `index.html` in any browser — no build step, no server, no accounts.
   SAN notation, alpha-beta search with piece-square tables). Verified with
   perft: start position perft(3) = 8,902 and the Kiwipete position
   perft(3) = 97,862, both exact.
-- `app.js` — rendering, animation choreography, game flow and the computer player.
-- `style.css` — the rainbow frame, pastel/violet board and the Sun (gold) vs
-  Moon (blue-violet) armies.
+- `wizard.js` — the characters, rendering, animation choreography, the duel,
+  the command parser and the computer player.
+- `wizard.css` — the great-hall stone theme: slate and marble, walnut,
+  candlelight and brass.
 
 ## Credit
 
-Inspired by a reel of the original *Battle Chess* playing on a CRT monitor.
-No assets from the original game are used — every glyph, colour and line of
-code here is new.
+A fan-made tribute to wizard's chess and to the classic animated chess game
+Battle Chess (the reel that started this). No assets from either are used —
+every character, colour and line of code here is new.
