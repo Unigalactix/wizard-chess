@@ -1,9 +1,7 @@
 :root {
   --board-size: min(92vw, 600px);
   --sq: calc(var(--board-size) / 8);
-  --ink: #1e1b2e;
-  --sun: #f59e0b;
-  --moon: #38bdf8;
+  --tilt: 55deg;
 }
 * { box-sizing: border-box; }
 body {
@@ -32,22 +30,33 @@ main {
   align-items: flex-start; padding: 18px 14px 8px; max-width: 1180px; margin: 0 auto;
 }
 .board-zone { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+
+/* ---------- POV stage: the board tilts away from the player ---------- */
 .board-frame {
-  position: relative; padding: 12px; border-radius: 18px;
+  position: relative; padding: 14px; border-radius: 18px;
   background: linear-gradient(145deg, #f59e0b, #ec4899, #8b5cf6, #06b6d4);
   box-shadow: 0 24px 60px #000a, inset 0 2px 0 #fff7;
 }
-#board {
-  position: relative; width: var(--board-size); height: var(--board-size);
-  border-radius: 8px; overflow: hidden; touch-action: manipulation;
-  box-shadow: inset 0 0 0 3px #0006;
+#stage {
+  position: relative; width: var(--board-size);
+  height: calc(var(--board-size) * 1.02);
+  perspective: calc(var(--board-size) * 1.85);
+  perspective-origin: 50% 32%;
 }
-#fx { position: absolute; inset: 12px; pointer-events: none; }
+#board {
+  position: absolute; left: 0; bottom: 1%;
+  width: var(--board-size); height: var(--board-size);
+  transform: rotateX(var(--tilt));
+  transform-origin: 50% 100%;
+  transform-style: preserve-3d;
+  border-radius: 8px;
+  box-shadow: 0 30px 50px #000b;
+  touch-action: manipulation;
+}
 
 .square { position: absolute; width: var(--sq); height: var(--sq); }
 .square.light { background: linear-gradient(135deg, #fef3c7, #fde68a); }
 .square.dark  { background: linear-gradient(135deg, #7c3aed, #4c1d95); }
-.square.shade { background: linear-gradient(135deg, #fb7185, #e11d48); }
 .square.ocean { background: linear-gradient(135deg, #22d3ee, #0369a1); }
 .square.last { box-shadow: inset 0 0 0 4px #ffffffa6, inset 0 0 22px #fff8; }
 .square.selected { box-shadow: inset 0 0 0 4px #fff, inset 0 0 26px #facc15; }
@@ -70,42 +79,88 @@ main {
 }
 .square.dark .coord, .square.ocean .coord { color: #ffffffb3; }
 
+/* ---------- action figures ---------- */
 .piece {
   position: absolute; width: var(--sq); height: var(--sq);
-  display: flex; align-items: center; justify-content: center;
   cursor: pointer; user-select: none; -webkit-user-select: none;
-  transition: none; z-index: 3; will-change: transform;
+  transform-style: preserve-3d;
 }
-.piece .disc {
-  position: absolute; width: 84%; height: 84%; border-radius: 50%;
-  box-shadow: 0 4px 10px #0009, inset 0 -6px 12px #0005, inset 0 4px 8px #fff6;
+.piece .shadow {
+  position: absolute; left: 10%; right: 10%; bottom: 5%; height: 24%;
+  border-radius: 50%; background: #00000059; filter: blur(3px);
 }
-.piece.sun .disc  { background: radial-gradient(circle at 32% 28%, #fff7d6, #fbbf24 55%, #b45309); }
-.piece.moon .disc { background: radial-gradient(circle at 32% 28%, #e0f2fe, #38bdf8 55%, #6d28d9); }
-.piece .glyph {
-  position: relative; font-size: calc(var(--sq) * 0.74); line-height: 1;
-  animation: bob 2.6s ease-in-out infinite;
+.piece .figure {
+  position: absolute; left: -16%; right: -16%; bottom: 2%; height: 176%;
+  transform-origin: 50% 100%;
+  transform: rotateX(calc(var(--tilt) * -1));
+  pointer-events: none;
 }
-.piece.sun .glyph  { color: #451a03; text-shadow: 0 1px 0 #fff8, 0 3px 5px #0007; }
-.piece.moon .glyph { color: #0c1030; text-shadow: 0 1px 0 #cffafe, 0 3px 5px #0008; }
-.piece.walking .glyph { animation: walkbob .18s ease-in-out infinite alternate; }
-.piece.lunge { z-index: 6; }
-.piece.dying .glyph { animation: fall .45s ease-in forwards; }
-.piece.shake .glyph { animation: shake .3s linear; }
-@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3.5%); } }
-@keyframes walkbob { from { transform: translateY(0) rotate(-3deg); } to { transform: translateY(-7%) rotate(3deg); } }
-@keyframes shake { 0%, 100% { transform: translateX(0); } 20% { transform: translateX(-9%); } 40% { transform: translateX(8%); } 60% { transform: translateX(-6%); } 80% { transform: translateX(4%); } }
-@keyframes fall { to { transform: rotate(84deg) translateY(16%); opacity: .15; } }
+.piece .figure svg { width: 100%; height: 100%; overflow: visible; display: block; }
+.piece.idle .figure svg { animation: bob 2.8s ease-in-out infinite; }
+.piece.walking .figure svg { animation: walkbob .17s ease-in-out infinite alternate; }
+.piece.celebrate .figure svg { animation: jump .5s ease-in-out infinite alternate; }
+@keyframes bob { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-2.6%); } }
+@keyframes walkbob { from { transform: translateY(0) rotate(-2.6deg); } to { transform: translateY(-6%) rotate(2.6deg); } }
+@keyframes jump { from { transform: translateY(0); } to { transform: translateY(-13%); } }
+
+/* ---------- faces & expressions ---------- */
+.face .eye { transform-box: fill-box; transform-origin: center; animation: blink 4.6s infinite; }
+@keyframes blink { 0%, 91%, 100% { transform: scaleY(1); } 94.5% { transform: scaleY(0.06); } }
+.face .brow, .face .mouth-shout, .face .mouth-o, .face .mouth-grin,
+.face .mouth-wavy, .face .mouth-flat, .face .eye-happy, .face .eye-x,
+.face .sweat { display: none; }
+.face .brow { transform-box: fill-box; transform-origin: center; }
+
+.figure[data-expr="determined"] .brow,
+.figure[data-expr="focused"] .brow { display: block; }
+.figure[data-expr="determined"] .mouth-calm,
+.figure[data-expr="focused"] .mouth-calm { display: none; }
+.figure[data-expr="determined"] .mouth-flat,
+.figure[data-expr="focused"] .mouth-flat { display: block; }
+.figure[data-expr="determined"] .brow-l { transform: rotate(16deg); }
+.figure[data-expr="determined"] .brow-r { transform: rotate(-16deg); }
+.figure[data-expr="focused"] .brow-l { transform: rotate(9deg); }
+.figure[data-expr="focused"] .brow-r { transform: rotate(-9deg); }
+
+.figure[data-expr="angry"] .brow { display: block; }
+.figure[data-expr="angry"] .brow-l { transform: rotate(30deg) translateY(1.5px); }
+.figure[data-expr="angry"] .brow-r { transform: rotate(-30deg) translateY(1.5px); }
+.figure[data-expr="angry"] .mouth-calm { display: none; }
+.figure[data-expr="angry"] .mouth-shout { display: block; }
+
+.figure[data-expr="scared"] .brow { display: block; }
+.figure[data-expr="scared"] .brow-l { transform: rotate(-20deg) translateY(-2.5px); }
+.figure[data-expr="scared"] .brow-r { transform: rotate(20deg) translateY(-2.5px); }
+.figure[data-expr="scared"] .eye { animation: none; transform: scale(1.35); }
+.figure[data-expr="scared"] .mouth-calm { display: none; }
+.figure[data-expr="scared"] .mouth-o,
+.figure[data-expr="scared"] .sweat { display: block; }
+
+.figure[data-expr="worried"] .brow { display: block; }
+.figure[data-expr="worried"] .brow-l { transform: rotate(-14deg) translateY(-1.5px); }
+.figure[data-expr="worried"] .brow-r { transform: rotate(14deg) translateY(-1.5px); }
+.figure[data-expr="worried"] .mouth-calm { display: none; }
+.figure[data-expr="worried"] .mouth-wavy,
+.figure[data-expr="worried"] .sweat { display: block; }
+
+.figure[data-expr="happy"] .eye,
+.figure[data-expr="happy"] .mouth-calm { display: none; }
+.figure[data-expr="happy"] .eye-happy,
+.figure[data-expr="happy"] .mouth-grin { display: block; }
+
+.figure[data-expr="dizzy"] .eye,
+.figure[data-expr="dizzy"] .mouth-calm { display: none; }
+.figure[data-expr="dizzy"] .eye-x,
+.figure[data-expr="dizzy"] .mouth-wavy { display: block; }
 
 .spark {
-  position: absolute; width: calc(var(--sq) * .16); height: calc(var(--sq) * .16);
-  border-radius: 50%; pointer-events: none; z-index: 8;
+  position: absolute; width: calc(var(--sq) * .15); height: calc(var(--sq) * .15);
+  border-radius: 50%; pointer-events: none;
   animation: sparkfly .5s ease-out forwards;
 }
-@keyframes sparkfly {
-  to { transform: translate(var(--dx), var(--dy)) scale(.3); opacity: 0; }
-}
+@keyframes sparkfly { to { transform: translate(var(--dx), var(--dy)) scale(.3); opacity: 0; } }
 
+/* ---------- trays, status, panel ---------- */
 .tray {
   min-height: calc(var(--sq) * .5); width: var(--board-size);
   display: flex; flex-wrap: wrap; align-items: center; gap: 0 2px;
@@ -164,9 +219,8 @@ button:disabled { opacity: .45; cursor: default; }
 }
 .promo-box p { margin: 0 0 12px; font-size: 1.1rem; font-weight: 700; }
 #promo-choices { display: flex; gap: 10px; }
-#promo-choices button { font-size: 2.4rem; padding: 8px 16px; border-radius: 12px; }
-#promo-choices button.sun { color: #fbbf24; }
-#promo-choices button.moon { color: #38bdf8; }
+#promo-choices button { padding: 6px 10px; border-radius: 12px; }
+#promo-choices button svg { width: 52px; height: 76px; display: block; }
 
 footer { text-align: center; color: #8f87b3; padding: 12px 16px 26px; font-size: .9rem; }
 @media (max-width: 560px) {
