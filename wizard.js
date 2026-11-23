@@ -345,11 +345,20 @@
     }
   }
 
+  var marksEl = null;
+  function ensureMarks() {
+    if (marksEl) return marksEl;
+    marksEl = document.createElement('div');
+    marksEl.id = 'marks';
+    $('stage').appendChild(marksEl);
+    return marksEl;
+  }
   function clearMarks() {
     squareEls.forEach(function (d) {
       d.classList.remove('selected', 'last', 'check');
       d.querySelectorAll('.dot,.ring').forEach(function (n) { n.remove(); });
     });
+    if (marksEl) marksEl.innerHTML = '';
   }
   function markSquares() {
     clearMarks();
@@ -361,10 +370,25 @@
     }
     if (selected >= 0) {
       squareEls[selected].classList.add('selected');
+      // Markers live in a screen-space overlay above the figures: in the
+      // tilted 3D view the tall pieces hide anything drawn in the plane.
+      var mk = ensureMarks();
+      var sr = $('stage').getBoundingClientRect();
+      function place(el, sqEl, scale) {
+        var r = sqEl.getBoundingClientRect();
+        el.style.left = (r.left - sr.left + r.width / 2) + 'px';
+        el.style.top = (r.top - sr.top + r.height / 2) + 'px';
+        el.style.width = (r.width * scale) + 'px';
+        el.style.height = (r.width * scale) + 'px';
+        mk.appendChild(el);
+      }
+      var selBox = document.createElement('div');
+      selBox.className = 'msel';
+      place(selBox, squareEls[selected], 0.97);
       targets.forEach(function (m) {
         var marker = document.createElement('div');
-        marker.className = m.captured ? 'ring' : 'dot';
-        squareEls[m.to].appendChild(marker);
+        marker.className = m.captured ? 'mring' : 'mdot';
+        place(marker, squareEls[m.to], m.captured ? 0.95 : 0.34);
       });
     }
     var st = game.status();
@@ -373,6 +397,8 @@
       if (ksq >= 0) squareEls[ksq].classList.add('check');
     }
   }
+
+  window.addEventListener('resize', function () { if (selected >= 0) markSquares(); });
 
   function renderTrays() {
     var counts = { w: { P: 0, N: 0, B: 0, R: 0, Q: 0 }, b: { P: 0, N: 0, B: 0, R: 0, Q: 0 } };
