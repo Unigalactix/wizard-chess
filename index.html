@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Colour Chess — Battle Chess, in Colour</title>
+<meta name="description" content="A colourful Battle-Chess-style game: character pieces that walk the board and duel on captures. Play offline with a friend on one board, or against the computer.">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
+</head>
+<body>
+  <header>
+    <h1><span class="c1">Colour</span> <span class="c2">Chess</span></h1>
+    <p class="tagline">Battle Chess, in colour — pieces that <em>walk</em> the board and <em>duel</em> on captures.</p>
+  </header>
+
+  <main>
+    <section class="board-zone">
+      <div class="tray" id="tray-top" aria-label="Captured pieces"></div>
+      <div class="board-frame">
+        <div id="board" role="grid" aria-label="Chess board"></div>
+        <div id="fx" aria-hidden="true"></div>
+      </div>
+      <div class="tray" id="tray-bottom" aria-label="Captured pieces"></div>
+      <div id="status" role="status">Sun to move</div>
+    </section>
+
+    <aside class="panel">
+      <div class="card">
+        <h2>Game</h2>
+        <label class="row"><span>Mode</span>
+          <select id="mode">
+            <option value="cpu" selected>1 Player vs Computer</option>
+            <option value="2p">2 Players — offline, same board</option>
+          </select>
+        </label>
+        <label class="row" id="side-row"><span>Play as</span>
+          <select id="side">
+            <option value="w" selected>Sun (first)</option>
+            <option value="b">Moon (second)</option>
+          </select>
+        </label>
+        <label class="row" id="diff-row"><span>Difficulty</span>
+          <select id="difficulty">
+            <option value="1">Easy</option>
+            <option value="2" selected>Medium</option>
+            <option value="3">Hard</option>
+          </select>
+        </label>
+        <div class="btn-row">
+          <button id="new-game" class="primary">New game</button>
+          <button id="undo">Undo</button>
+          <button id="flip">Flip board</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Feel</h2>
+        <label class="row"><span>Piece actions</span>
+          <select id="speed">
+            <option value="0">Instant</option>
+            <option value="260">Fast</option>
+            <option value="430" selected>Normal</option>
+            <option value="750">Battle Chess slow</option>
+          </select>
+        </label>
+        <label class="row check"><span>Sound</span>
+          <input type="checkbox" id="sound" checked>
+        </label>
+      </div>
+
+      <div class="card moves-card">
+        <h2>Moves</h2>
+        <ol id="moves"></ol>
+      </div>
+
+      <div class="card how">
+        <h2>How it plays</h2>
+        <p>Tap a piece, then tap a glowing square. Pieces <strong>walk</strong> square by square like the classic Battle Chess — and when one captures another, they duel. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote.</p>
+        <p class="dim">Inspired by the Battle Chess reel — rebuilt from scratch, in colour. No accounts, no servers: everything runs on this page.</p>
+      </div>
+    </aside>
+  </main>
+
+  <div id="promo-modal" class="hidden" role="dialog" aria-label="Choose promotion piece">
+    <div class="promo-box">
+      <p>Promote to…</p>
+      <div id="promo-choices"></div>
+    </div>
+  </div>
+
+  <footer>
+    <p>Colour Chess — an original fan-made tribute to animated chess. Built with vanilla JS.</p>
+  </footer>
+
+  <script src="engine.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
