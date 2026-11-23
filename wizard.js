@@ -59,6 +59,7 @@
       '<circle cx="100" cy="118" r="4.2" fill="' + P.skin + '"/>' +
       '<path d="M9 94 Q24 85 39 94 L39 128 Q24 143 9 128 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.8"/>' +
       '<circle cx="24" cy="111" r="5.4" fill="' + P.accent + '"/>' +
+      '<circle cx="24" cy="111" r="8.8" fill="none" stroke="' + P.dark + '" stroke-width="1.6" opacity="0.6"/>' +
       '<path d="M24 97 v28 M12.5 111 h23" stroke="' + P.dark + '" stroke-width="2" opacity="0.55"/>' +
       '<circle cx="60" cy="54" r="15.5" fill="' + P.skin + '"/>' +
       '<path d="M42.5 50 A17.5 17.5 0 0 1 77.5 50 L77.5 54 L42.5 54 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
@@ -84,9 +85,11 @@
       '<circle cx="27.5" cy="27.5" r="2.3" fill="#241d10"/>' +
       '<circle cx="19.5" cy="35.5" r="1.5" fill="' + P.dark + '"/>' +
       '<path d="M14 30 Q24 35 38 31" fill="none" stroke="' + P.cloth + '" stroke-width="3"/>' +
+      '<path d="M22 38 Q42 55 57 63" fill="none" stroke="' + P.dark + '" stroke-width="2.2"/>' +
       // saddle + blanket
       '<path d="M55 64 L79 64 L75 79 L59 79 Z" fill="' + P.dark + '"/>' +
       '<rect x="56" y="77" width="21" height="15" fill="' + P.cloth + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="56" y="88" width="21" height="3.4" fill="' + P.accent + '"/>' +
       // rider: leg, torso, arm + raised sword
       '<path d="M63 76 L59 100 L67 100 L69.5 80 Z" fill="' + P.dark + '"/>' +
       '<line x1="86" y1="64" x2="86" y2="28" stroke="#c3c8cd" stroke-width="4.6" stroke-linecap="round"/>' +
@@ -110,6 +113,8 @@
       '<path d="M89 108.5 L104 102.5" stroke="' + P.dark + '" stroke-width="1.6"/>' +
       '<path d="M60 84 L85 176 Q60 185 35 176 Z" fill="' + P.cloth + '"/>' +
       '<path d="M60 95 L72.5 177.5 L47.5 177.5 Z" fill="' + P.accent + '" opacity="0.28"/>' +
+      '<rect x="46" y="126" width="28" height="5.6" fill="' + P.dark + '"/>' +
+      '<path transform="translate(53,142) scale(0.8)" d="M8 0 l1.9 4.2 4.2 1.9 -4.2 1.9 -1.9 4.2 -1.9 -4.2 -4.2 -1.9 4.2 -1.9 Z" fill="' + P.accent + '" opacity="0.85"/>' +
       '<path d="M44 99 Q31 107 25 119" fill="none" stroke="' + P.cloth + '" stroke-width="9" stroke-linecap="round"/>' +
       '<path d="M76 99 Q89 103 95 111" fill="none" stroke="' + P.cloth + '" stroke-width="9" stroke-linecap="round"/>' +
       '<circle cx="24" cy="121" r="4.2" fill="' + P.skin + '"/><circle cx="96" cy="113" r="4.2" fill="' + P.skin + '"/>' +
@@ -129,6 +134,7 @@
       '<circle cx="48" cy="104" r="2" fill="' + P.dark + '"/><circle cx="72" cy="104" r="2" fill="' + P.dark + '"/>' +
       '<circle cx="48" cy="120" r="2" fill="' + P.dark + '"/><circle cx="72" cy="120" r="2" fill="' + P.dark + '"/>' +
       '<rect x="34" y="134" width="52" height="7" fill="' + P.dark + '"/>' +
+      '<path d="M51 134 L51 112 Q60 103 69 112 L69 134 Z" fill="' + P.dark + '" opacity="0.5"/>' +
       '<circle cx="36" cy="92" r="9.6" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
       '<circle cx="84" cy="92" r="9.6" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
       '<path d="M39 99 Q27 105 23 114" fill="none" stroke="' + P.main + '" stroke-width="8.6" stroke-linecap="round"/>' +
@@ -156,6 +162,8 @@
       '<path d="M44 97 Q32 106 36.5 120" fill="none" stroke="' + P.skin + '" stroke-width="6.4" stroke-linecap="round"/>' +
       '<path d="M76 97 Q96 90 101 72" fill="none" stroke="' + P.skin + '" stroke-width="6.4" stroke-linecap="round"/>' +
       '<circle cx="60" cy="50" r="18" fill="' + P.hair + '"/>' +
+      '<path d="M43.5 42 Q37 76 43 98 L49.5 93.5 Q45 68 47.5 44 Z" fill="' + P.accent + '" opacity="0.45"/>' +
+      '<path d="M76.5 42 Q83 76 77 98 L70.5 93.5 Q75 68 72.5 44 Z" fill="' + P.accent + '" opacity="0.45"/>' +
       '<circle cx="60" cy="54" r="15" fill="' + P.skin + '"/>' +
       '<path d="M45.5 47 Q41 70 47 84 L53 80 Q49 62 50.5 47 Z" fill="' + P.hair + '"/>' +
       '<path d="M74.5 47 Q79 70 73 84 L67 80 Q71 62 69.5 47 Z" fill="' + P.hair + '"/>' +
@@ -181,6 +189,7 @@
       '<path d="M43.5 57 Q45.5 89 60 95 Q74.5 89 76.5 57 Q69 66.5 60 66.5 Q51 66.5 43.5 57 Z" fill="' + P.beard + '"/>' +
       '<path d="M41.5 36 L44.8 13 L54.5 25.5 L60 7 L65.5 25.5 L75.2 13 L78.5 36 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
       '<rect x="41.5" y="35.5" width="37" height="5.4" fill="' + P.accent + '"/>' +
+      '<circle cx="60" cy="29" r="2.7" fill="' + P.cloth + '"/>' +
       face(60, 54, 0.9) + '</svg>'; }
   };
 
@@ -650,20 +659,75 @@
     modal.classList.remove('hidden');
   }
 
+
+  /* Projective mapping: screen point -> board plane square.
+     The board is a square in 3D; its screen image is a quad. Four corner
+     markers ride in the plane so we can invert the projection exactly. */
+  var cornerEls = null;
+  function ensureCorners() {
+    if (cornerEls) return;
+    cornerEls = [];
+    [[0, 0], [100, 0], [100, 100], [0, 100]].forEach(function (pt) {
+      var s = document.createElement('span');
+      s.style.cssText = 'position:absolute;width:2px;height:2px;opacity:0;pointer-events:none;left:' + pt[0] + '%;top:' + pt[1] + '%;';
+      boardEl.appendChild(s);
+      cornerEls.push(s);
+    });
+  }
+  function planeSquare(clientX, clientY) {
+    try {
+      ensureCorners();
+      var q = cornerEls.map(function (el) {
+        var r = el.getBoundingClientRect();
+        return [r.left + r.width / 2, r.top + r.height / 2];
+      });
+      var x0 = q[0][0], y0 = q[0][1], x1 = q[1][0], y1 = q[1][1];
+      var x2 = q[2][0], y2 = q[2][1], x3 = q[3][0], y3 = q[3][1];
+      var dx1 = x1 - x2, dy1 = y1 - y2, dx2 = x3 - x2, dy2 = y3 - y2;
+      var dx3 = x0 - x1 + x2 - x3, dy3 = y0 - y1 + y2 - y3;
+      var den = dx1 * dy2 - dx2 * dy1;
+      if (!den) return -1;
+      var g = (dx3 * dy2 - dx2 * dy3) / den, h = (dx1 * dy3 - dx3 * dy1) / den;
+      var a = x1 - x0 + g * x1, b = x3 - x0 + h * x3, c = x0;
+      var d = y1 - y0 + g * y1, e = y3 - y0 + h * y3, f = y0;
+      var A = e - f * h, B = c * h - b, C = b * f - c * e;
+      var det = a * A + d * B + g * C;
+      if (!det) return -1;
+      var D = f * g - d, E2 = a - c * g, F = c * d - a * f;
+      var G = d * h - e * g, H = b * g - a * h, I = a * e - b * d;
+      var w = (G * clientX + H * clientY + I) / det;
+      if (!w) return -1;
+      var u = (A * clientX + B * clientY + C) / det / w;
+      var v = (D * clientX + E2 * clientY + F) / det / w;
+      if (u < 0 || u >= 1 || v < 0 || v >= 1) return -1;
+      var df = Math.floor(u * 8), dr = Math.floor(v * 8);
+      var file = flipped ? 7 - df : df;
+      var rank = flipped ? dr : 7 - dr;
+      return rank * 8 + file;
+    } catch (err) { return -1; }
+  }
+
   boardEl.addEventListener('click', function (ev) {
     if (animating || gameOver || !isHumanTurn()) return;
-    var node = ev.target;
-    while (node && node !== boardEl && !(node.dataset && node.dataset.sq !== undefined)) node = node.parentNode;
-    if (!node || node === boardEl) return;
-    var sq = parseInt(node.dataset.sq, 10);
-    if (selected >= 0) {
-      var cands = findLegal(selected, sq);
-      if (cands.length) {
-        if (cands.length > 1 && cands[0].promotion) { askPromotion(cands, doMove); return; }
-        doMove(cands[0]);
-        return;
-      }
+    var figSq = -1, node = ev.target;
+    while (node && node !== boardEl) {
+      if (node.dataset && node.dataset.sq !== undefined) { figSq = parseInt(node.dataset.sq, 10); break; }
+      node = node.parentNode;
     }
+    var plSq = planeSquare(ev.clientX, ev.clientY);
+    function tryMove(to) {
+      var cands = findLegal(selected, to);
+      if (!cands.length) return false;
+      if (cands.length > 1 && cands[0].promotion) { askPromotion(cands, doMove); return true; }
+      doMove(cands[0]);
+      return true;
+    }
+    if (selected >= 0) {
+      if (plSq >= 0 && tryMove(plSq)) return;
+      if (figSq >= 0 && figSq !== plSq && tryMove(figSq)) return;
+    }
+    var sq = figSq >= 0 ? figSq : plSq;
+    if (sq < 0) return;
     var p = game.board[sq];
     if (selected >= 0 && pieceEls[selected]) setExpr(pieceEls[selected], 'idle');
     if (p && E.colorOf(p) === game.turn) {
