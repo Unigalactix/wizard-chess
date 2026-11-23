@@ -65,28 +65,44 @@
       '<rect x="40" y="52" width="40" height="4.6" rx="2.3" fill="' + P.dark + '"/>' +
       '<path d="M56.5 31 Q60 24 63.5 31 L63.5 40 L56.5 40 Z" fill="' + P.cloth + '"/>' +
       face(60, 56, 0.9) + '</svg>'; },
-    N: function (P) { return '<svg viewBox="0 0 120 190">' + // armoured knight
-      '<line x1="105" y1="98" x2="105" y2="34" stroke="#c3c8cd" stroke-width="5" stroke-linecap="round"/>' +
-      '<path d="M105 16 L110 34 L100 34 Z" fill="#c3c8cd"/>' +
-      '<path d="M95 96 h20" stroke="' + P.dark + '" stroke-width="4.4" stroke-linecap="round"/>' +
-      '<line x1="105" y1="98" x2="105" y2="110" stroke="#5d4a33" stroke-width="5" stroke-linecap="round"/>' +
-      legs(P, 148) +
-      '<path d="M41 90 Q60 81 79 90 L81 150 Q60 156 39 150 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
-      '<path d="M57 92 h6 v36 h-6 Z" fill="' + P.accent + '" opacity="0.75"/>' +
-      '<path d="M39 126 h42 M39 136 h42" stroke="' + P.dark + '" stroke-width="1.8" opacity="0.45"/>' +
-      '<rect x="39" y="140" width="42" height="6" fill="' + P.dark + '"/>' +
-      '<circle cx="39" cy="94" r="8.4" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
-      '<circle cx="81" cy="94" r="8.4" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
-      '<path d="M42 99 Q29 105 25 114" fill="none" stroke="' + P.main + '" stroke-width="8" stroke-linecap="round"/>' +
-      '<path d="M78 99 Q95 101 103 103" fill="none" stroke="' + P.main + '" stroke-width="8" stroke-linecap="round"/>' +
-      '<circle cx="104" cy="104" r="4.4" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.2"/>' +
-      '<path d="M7 90 Q23 81 39 90 L39 124 Q23 139 7 124 Z" fill="' + P.cloth + '" stroke="' + P.dark + '" stroke-width="1.8"/>' +
-      '<path d="M17 96 L25 90 L29 97 L27 108 L20 108 L18.5 101 Z" fill="' + P.accent + '"/>' +
-      '<path d="M60 26 Q76 32 73 48 Q65 38 57 36 Z" fill="' + P.cloth + '"/>' +
-      '<circle cx="60" cy="54" r="15.5" fill="' + P.skin + '"/>' +
-      '<path d="M42.5 50 A17.5 17.5 0 0 1 77.5 50 L77.5 53.5 L42.5 53.5 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
-      '<rect x="57.4" y="51" width="5.2" height="11" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.1"/>' +
-      face(60, 57, 0.9) + '</svg>'; },
+    N: function (P) { return '<svg viewBox="0 0 120 190">' + // knight on horseback — unmistakable
+      // tail + horse body
+      '<path d="M93 76 Q108 90 101 118 Q94 105 89 95 Z" fill="' + P.hair + '"/>' +
+      '<path d="M28 84 Q29 67 52 65 L84 65 Q99 67 98 84 Q97 101 84 104 L35 104 Q27 99 28 84 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.8"/>' +
+      // legs + hooves
+      '<rect x="35" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="48" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="74" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<rect x="86" y="100" width="7.6" height="44" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      '<path d="M33 143 h11.5 v6 h-11.5 Z M46 143 h11.5 v6 h-11.5 Z M72 143 h11.5 v6 h-11.5 Z M84 143 h11.5 v6 h-11.5 Z" fill="#33302a"/>' +
+      // neck, head, ears, mane
+      '<path d="M36 72 Q23 60 20 41 L35 34 Q46 45 47 63 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
+      '<path d="M41 31 Q49 48 47 66 L38 60 Q43 45 36 35 Z" fill="' + P.hair + '"/>' +
+      '<path d="M21 41 L15.5 25 Q14 18 20.5 16.5 L36 19.5 Q42.5 21.5 41.5 29.5 L38.5 42.5 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.7"/>' +
+      '<path d="M24.5 17.5 L22.5 5 L31 12.5 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.4"/>' +
+      '<path d="M33.5 18.5 L34.5 7 L40 15.5 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.4"/>' +
+      '<circle cx="27.5" cy="27.5" r="2.3" fill="#241d10"/>' +
+      '<circle cx="19.5" cy="35.5" r="1.5" fill="' + P.dark + '"/>' +
+      '<path d="M14 30 Q24 35 38 31" fill="none" stroke="' + P.cloth + '" stroke-width="3"/>' +
+      // saddle + blanket
+      '<path d="M55 64 L79 64 L75 79 L59 79 Z" fill="' + P.dark + '"/>' +
+      '<rect x="56" y="77" width="21" height="15" fill="' + P.cloth + '" stroke="' + P.dark + '" stroke-width="1.3"/>' +
+      // rider: leg, torso, arm + raised sword
+      '<path d="M63 76 L59 100 L67 100 L69.5 80 Z" fill="' + P.dark + '"/>' +
+      '<line x1="86" y1="64" x2="86" y2="28" stroke="#c3c8cd" stroke-width="4.6" stroke-linecap="round"/>' +
+      '<path d="M86 12 L90.5 28 L81.5 28 Z" fill="#c3c8cd"/>' +
+      '<path d="M77.5 62 h17" stroke="' + P.dark + '" stroke-width="4" stroke-linecap="round"/>' +
+      '<path d="M55 45 Q66 38.5 75 45 L77 68 Q66 72.5 53 68 Z" fill="' + P.cloth + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
+      '<path d="M74 50 Q85 50 86.5 58" fill="none" stroke="' + P.cloth + '" stroke-width="7" stroke-linecap="round"/>' +
+      '<path d="M56 50 Q46 54 44 60" fill="none" stroke="' + P.cloth + '" stroke-width="7" stroke-linecap="round"/>' +
+      // rider's shield with horse emblem
+      '<path d="M33 47 Q41.5 42.5 50 47 L50 62 Q41.5 69.5 33 62 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.6"/>' +
+      '<path d="M38.5 51 L44 47.5 L47 51.5 L45.5 58 L40 58 L39 53.5 Z" fill="' + P.accent + '"/>' +
+      // rider head + helmet + plume
+      '<path d="M65.5 13 Q77 17 75 27 Q69 20 63.5 19 Z" fill="' + P.cloth + '"/>' +
+      '<circle cx="65" cy="33" r="10.5" fill="' + P.skin + '"/>' +
+      '<path d="M53.5 30.5 A11.5 11.5 0 0 1 76.5 30.5 L76.5 33 L53.5 33 Z" fill="' + P.main + '" stroke="' + P.dark + '" stroke-width="1.4"/>' +
+      face(65, 34.5, 0.6) + '</svg>'; },
     B: function (P) { return '<svg viewBox="0 0 120 190">' + // wizard (bishop)
       '<line x1="17" y1="30" x2="17" y2="180" stroke="#6d5b43" stroke-width="4"/>' +
       '<circle cx="17" cy="20" r="8" fill="' + P.accent + '" stroke="' + P.dark + '" stroke-width="1.5"/>' +

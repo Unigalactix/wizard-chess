@@ -35,7 +35,7 @@ As in the stories, the pieces answer to orders. Type one into the command box:
 - Full chess rules: legal moves, check, checkmate, stalemate, castling,
   en passant, promotion (with a picker), fifty-move and insufficient-material draws.
 - Living stone pieces, drawn from scratch as SVG characters — a foot-soldier
-  pawn, an armoured knight, a pointed-hat wizard (bishop), a tower guardian
+  pawn, a knight on horseback, a pointed-hat wizard (bishop), a tower guardian
   (rook), a queen and a bearded king — each with a face:
   - **determined** when you pick them, **focused** while walking,
   - **angry** when they strike, **scared** when cornered,
