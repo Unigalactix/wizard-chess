@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wizard Chess — the living stone game</title>
 <meta name="description" content="Wizard Chess: living stone pieces that walk the board and smash their enemies. Command them by tap or by typed order. Offline 2-player and 1-vs-computer.">
-<link rel="stylesheet" href="wizard7.css">
+<link rel="stylesheet" href="wizard8.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
 </head>
 <body>
@@ -80,6 +80,12 @@
           <button id="undo">Undo</button>
           <button id="flip">Flip board</button>
         </div>
+        <div class="btn-row">
+          <button id="view-top">Top view</button>
+          <button id="view-rotate">Rotate: off</button>
+          <button id="view-flip">Flip view</button>
+          <button id="view-reset">Reset view</button>
+        </div>
       </div>
 
       <div class="card">
@@ -114,7 +120,7 @@
 
       <div class="card how">
         <h2>How it plays</h2>
-        <p>Tap a piece, then tap a marked square — or command it by name. The stone soldiers walk square by square, pull a face when picked, panic when cornered, and every capture cuts to a close-up: the attacker strikes, the victim cracks and crumbles to rubble. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote.</p>
+        <p>Tap a piece, then tap a marked square — or command it by name. The stone soldiers walk square by square, pull a face when picked, panic when cornered, and every capture cuts to a close-up: the attacker strikes, the victim cracks and crumbles to rubble. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote. Picking a piece grays out the rest of your army so its paths stand clear. Switch to Top view for an overhead read of the battle, or turn Rotate on and drag to circle the board; Flip view walks you around to your opponent's side.</p>
         <p class="dim">You watch from your own side of the board — your army stands before you, theirs recedes down the hall. A fan-made tribute to wizard's chess, built from scratch. No accounts, no servers: everything runs on this page.</p>
       </div>
     </aside>
@@ -132,6 +138,6 @@
   </footer>
 
   <script src="engine.js"></script>
-  <script src="wizard7.js"></script>
+  <script src="wizard8.js"></script>
 </body>
 </html>
