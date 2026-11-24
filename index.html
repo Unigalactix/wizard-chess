@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wizard Chess — the living stone game</title>
 <meta name="description" content="Wizard Chess: living stone pieces that walk the board and smash their enemies. Command them by tap or by typed order. Offline 2-player and 1-vs-computer.">
-<link rel="stylesheet" href="wizard8.css">
+<link rel="stylesheet" href="wizard9.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
 </head>
 <body>
@@ -24,7 +24,13 @@
   </header>
 
   <main>
-    <section class="board-zone">
+    <section class="stage-col">
+      <div class="status-strip">
+        <div id="status" role="status">Ivory to move</div>
+        <span id="callout" class="callout hidden"></span>
+        <span id="thinking" class="thinking hidden" aria-hidden="true">Thinking<span class="tdots"><i>.</i><i>.</i><i>.</i></span></span>
+        <span id="caption-badge" class="caption-badge" role="status"></span>
+      </div>
       <div class="tray" id="tray-top" aria-label="Captured pieces"></div>
       <div class="board-frame">
         <div id="stage">
@@ -50,79 +56,113 @@
         </div>
       </div>
       <div class="tray" id="tray-bottom" aria-label="Captured pieces"></div>
-      <div id="status" role="status">Ivory to move</div>
+
+      <div class="cmd-bar">
+        <div class="cmd-row">
+          <input id="command" type="text" placeholder="Knight to f3…" autocomplete="off" spellcheck="false" aria-label="Type a move command">
+          <button id="command-go" aria-label="Run command">Move</button>
+          <button data-action="undo" aria-label="Undo last move">Undo</button>
+          <button data-action="flip" aria-label="Flip board">Flip</button>
+        </div>
+        <div id="cmd-chips" class="cmd-chips" aria-label="Example commands">
+          <button type="button" class="chip-btn" data-cmd="e2 to e4">e2 to e4</button>
+          <button type="button" class="chip-btn" data-cmd="knight to f3">knight to f3</button>
+          <button type="button" class="chip-btn" data-cmd="pawn to d4">pawn to d4</button>
+          <button type="button" class="chip-btn" data-cmd="castle kingside">castle kingside</button>
+        </div>
+        <p id="command-note" class="cmd-note" role="status"></p>
+        <div id="cmd-disambig" class="cmd-disambig hidden"></div>
+      </div>
     </section>
 
-    <aside class="panel">
+    <aside class="rail-col">
+      <div class="card moves-card">
+        <h2>Moves</h2>
+        <ol id="moves"></ol>
+      </div>
+
       <div class="card">
-        <h2>Game</h2>
-        <label class="row"><span>Mode</span>
+        <h2>Match setup</h2>
+        <div class="row"><span>Mode</span>
+          <div class="seg" id="seg-mode" role="radiogroup" aria-label="Mode">
+            <button type="button" role="radio" data-value="cpu">vs Computer</button>
+            <button type="button" role="radio" data-value="2p">2 Players</button>
+          </div>
+        </div>
+        <div class="row"><span>Play as</span>
+          <div class="seg" id="seg-side" role="radiogroup" aria-label="Play as">
+            <button type="button" role="radio" data-value="w">Ivory</button>
+            <button type="button" role="radio" data-value="b">Onyx</button>
+          </div>
+        </div>
+        <div class="row"><span>Difficulty</span>
+          <div class="seg" id="seg-diff" role="radiogroup" aria-label="Difficulty">
+            <button type="button" role="radio" data-value="1">Easy</button>
+            <button type="button" role="radio" data-value="2">Medium</button>
+            <button type="button" role="radio" data-value="3">Hard</button>
+          </div>
+        </div>
+        <div class="btn-row">
+          <button id="new-game" class="primary danger-zone" aria-label="Start a new game">New game</button>
+        </div>
+        <div class="sr-only" aria-hidden="true">
           <select id="mode">
             <option value="cpu" selected>1 Player vs Computer</option>
             <option value="2p">2 Players — offline, same board</option>
           </select>
-        </label>
-        <label class="row" id="side-row"><span>Play as</span>
           <select id="side">
             <option value="w" selected>Ivory (first)</option>
             <option value="b">Onyx (second)</option>
           </select>
-        </label>
-        <label class="row" id="diff-row"><span>Difficulty</span>
           <select id="difficulty">
             <option value="1">Easy</option>
             <option value="2" selected>Medium</option>
             <option value="3">Hard</option>
           </select>
-        </label>
-        <div class="btn-row">
-          <button id="new-game" class="primary">New game</button>
-          <button id="undo">Undo</button>
-          <button id="flip">Flip board</button>
-        </div>
-        <div class="btn-row">
-          <button id="view-top">Top view</button>
-          <button id="view-rotate">Rotate: off</button>
-          <button id="view-flip">Flip view</button>
-          <button id="view-reset">Reset view</button>
         </div>
       </div>
 
       <div class="card">
-        <h2>Command your pieces</h2>
-        <p class="dim">As in the films, the pieces answer to orders. Type one and press Enter — <em>“knight to f3”</em>, <em>“pawn takes e5”</em>, or simply <em>“e2 to e4”</em>.</p>
-        <div class="cmd-row">
-          <input id="command" type="text" placeholder="Knight to f3…" autocomplete="off" spellcheck="false">
-          <button id="command-go">Move</button>
+        <h2>In match</h2>
+        <div class="btn-row">
+          <button data-action="undo" aria-label="Undo last move">Undo</button>
+          <button data-action="flip" aria-label="Flip board">Flip board</button>
         </div>
-        <p id="command-note" class="cmd-note" role="status"></p>
-      </div>
-
-      <div class="card">
-        <h2>Feel</h2>
-        <label class="row"><span>Piece actions</span>
+        <h3 class="subhead">View</h3>
+        <div class="btn-row">
+          <button id="view-top" aria-label="Toggle top view">Top view</button>
+          <button id="view-rotate" aria-label="Toggle rotate mode">Rotate: off</button>
+          <button id="view-flip" aria-label="Flip the camera view 180 degrees">Flip view</button>
+          <button id="view-reset" aria-label="Reset the camera view">Reset view</button>
+        </div>
+        <h3 class="subhead">Feel</h3>
+        <div class="row"><span>Piece actions</span>
+          <div class="seg" id="seg-speed" role="radiogroup" aria-label="Piece action speed">
+            <button type="button" role="radio" data-value="0">Instant</button>
+            <button type="button" role="radio" data-value="260">Fast</button>
+            <button type="button" role="radio" data-value="430">Normal</button>
+            <button type="button" role="radio" data-value="750">Slow</button>
+          </div>
+        </div>
+        <div class="row"><span>Sound</span>
+          <button type="button" id="sound-toggle" aria-pressed="true">Sound: on</button>
+        </div>
+        <div class="sr-only" aria-hidden="true">
           <select id="speed">
             <option value="0">Instant</option>
             <option value="260">Fast</option>
             <option value="430" selected>Normal</option>
             <option value="750">Ceremonial slow</option>
           </select>
-        </label>
-        <label class="row check"><span>Sound</span>
           <input type="checkbox" id="sound" checked>
-        </label>
+        </div>
       </div>
 
-      <div class="card moves-card">
-        <h2>Moves</h2>
-        <ol id="moves"></ol>
-      </div>
-
-      <div class="card how">
-        <h2>How it plays</h2>
+      <details class="card how">
+        <summary>How it plays</summary>
         <p>Tap a piece, then tap a marked square — or command it by name. The stone soldiers walk square by square, pull a face when picked, panic when cornered, and every capture cuts to a close-up: the attacker strikes, the victim cracks and crumbles to rubble. Knights hop. Kings and rooks castle properly, pawns can capture en passant and promote. Picking a piece grays out the rest of your army so its paths stand clear. Switch to Top view for an overhead read of the battle, or turn Rotate on and drag to circle the board; Flip view walks you around to your opponent's side.</p>
         <p class="dim">You watch from your own side of the board — your army stands before you, theirs recedes down the hall. A fan-made tribute to wizard's chess, built from scratch. No accounts, no servers: everything runs on this page.</p>
-      </div>
+      </details>
     </aside>
   </main>
 
@@ -138,6 +178,6 @@
   </footer>
 
   <script src="engine.js"></script>
-  <script src="wizard8.js"></script>
+  <script src="wizard9.js"></script>
 </body>
 </html>
