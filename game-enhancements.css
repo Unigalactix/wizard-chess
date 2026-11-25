@@ -1,0 +1,48 @@
+/* Articulated movement, dramatic capture beats, team-color cloth, material scale. */
+:root { --robe-w: #c9bb9c; --robe-b: #292b30; }
+.piece svg .living-head, #duel svg .living-head { animation: living-head-nod 1.8s ease-in-out infinite; }
+.piece.walking svg .living-head { animation: walking-head 280ms ease-in-out infinite alternate; }
+.piece svg .living-leg-a, .piece svg .living-leg-b { transform-box: fill-box; transform-origin: 50% 12%; }
+.piece.walking svg .living-leg-a { animation: gait-leg-a 190ms ease-in-out infinite alternate; }
+.piece.walking svg .living-leg-b { animation: gait-leg-b 190ms ease-in-out infinite alternate; }
+.piece svg .living-arm-a, .piece svg .living-arm-b { transform-box: fill-box; transform-origin: 50% 12%; }
+.piece.walking svg .living-arm-a { animation: gait-arm-a 190ms ease-in-out infinite alternate; }
+.piece.walking svg .living-arm-b { animation: gait-arm-b 190ms ease-in-out infinite alternate; }
+@keyframes living-head-nod { 0%,100% { transform: rotate(0); } 50% { transform: rotate(-1.5deg); } }
+@keyframes walking-head { from { transform: rotate(-3deg) translateY(1px); } to { transform: rotate(3deg) translateY(-1px); } }
+@keyframes gait-leg-a { from { transform: rotate(-20deg) translateY(-1px); } to { transform: rotate(19deg) translateY(1px); } }
+@keyframes gait-leg-b { from { transform: rotate(19deg) translateY(1px); } to { transform: rotate(-20deg) translateY(-1px); } }
+@keyframes gait-arm-a { from { transform: rotate(15deg); } to { transform: rotate(-19deg); } }
+@keyframes gait-arm-b { from { transform: rotate(-19deg); } to { transform: rotate(15deg); } }
+.piece.walking .figure svg { animation: human-stride .38s ease-in-out infinite alternate !important; }
+@keyframes human-stride { from { transform: translateY(0) rotate(-1.2deg); } to { transform: translateY(-3.2%) rotate(1.2deg); } }
+#duel:not(.hidden) #duel-atk .living-arm-a { animation: duel-guard 620ms ease-in-out infinite alternate; }
+#duel:not(.hidden) #duel-atk .living-arm-b { animation: duel-strike 520ms cubic-bezier(.2,.8,.2,1) infinite alternate; }
+#duel:not(.hidden) #duel-atk .living-head { animation: duel-focus 700ms ease-in-out infinite alternate; }
+#duel:not(.hidden) #duel-vic .living-arm-a, #duel:not(.hidden) #duel-vic .living-arm-b { animation: duel-block 420ms ease-in-out infinite alternate; }
+#duel:not(.hidden) #duel-vic .living-head { animation: duel-flinch 380ms ease-in-out infinite alternate; }
+@keyframes duel-guard { from { transform: rotate(12deg); } to { transform: rotate(-28deg); } }
+@keyframes duel-strike { from { transform: rotate(-8deg); } to { transform: rotate(54deg) translate(2px,-3px); } }
+@keyframes duel-block { from { transform: rotate(-26deg); } to { transform: rotate(24deg); } }
+@keyframes duel-focus { from { transform: rotate(-3deg); } to { transform: rotate(5deg); } }
+@keyframes duel-flinch { from { transform: rotate(-7deg) translateX(-1px); } to { transform: rotate(11deg) translateX(2px); } }
+#duel:not(.hidden) .duel-slash { animation: duel-slash-flash 700ms ease-in-out infinite; }
+@keyframes duel-slash-flash { 0%,25%,100% { opacity:0; transform:translateX(-12%) rotate(-12deg) scale(.7); } 42%,58% { opacity:1; transform:translateX(7%) rotate(3deg) scale(1.05); } }
+.material-card { width:min(100%,calc(var(--board-size) + 36px)); padding:8px 12px; border:1px solid rgba(196,169,112,.16); border-radius:9px; background:rgba(31,27,21,.94); color:#eee7d4; font: .72rem/1.3 Inter,system-ui,sans-serif; }
+.material-heading,.material-scores { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+.material-heading { margin-bottom:6px; color:#aaa08b; text-transform:uppercase; letter-spacing:.12em; font-size:.62rem; }
+.material-heading strong { color:#dfc98f; letter-spacing:0; text-transform:none; font-size:.72rem; }
+.advantage-track { display:flex; height:7px; overflow:hidden; border-radius:99px; background:#28251e; box-shadow:inset 0 1px 3px #0008; }
+.advantage-ivory { width:50%; background:linear-gradient(90deg,#d9cfb2,#f4e8ca); transition:width .25s ease; }
+.advantage-onyx { flex:1; background:linear-gradient(90deg,#52545a,#25272d); transition:width .25s ease; }
+.material-scores { padding-top:5px; color:#c8bea7; font-size:.68rem; }
+.material-scores span { display:flex; align-items:center; gap:5px; }
+.material-scores b { color:#f0e8d5; font-variant-numeric:tabular-nums; }
+.team-dot { display:inline-block; width:8px; height:8px; border-radius:50%; vertical-align:middle; }
+.ivory-dot { background:#eee2c3; box-shadow:0 0 0 1px #b5a77f; }
+.onyx-dot { background:#4a4b50; box-shadow:0 0 0 1px #85817a; }
+.color-row { display:flex; align-items:center; justify-content:space-between; gap:10px; margin:7px 0; color:#d8cdb2; font-size:.8rem; }
+.color-row > span { display:flex; align-items:center; gap:7px; }
+.color-row select { min-width:118px; padding:6px 9px; border:1px solid #57492c; border-radius:6px; background:#1a160f; color:#eee7d4; font:inherit; }
+@media (max-width:560px) { .material-card { padding:7px 9px; } .color-row select { min-width:105px; } }
+@media (prefers-reduced-motion:reduce) { .piece.walking svg *, #duel:not(.hidden) svg * { animation-duration:.01ms!important; } }
