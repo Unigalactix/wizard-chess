@@ -2,10 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#17140f">
 <title>Wizard Chess — The Living Stone Game</title>
-<meta name="description" content="Command living stone chess pieces in an offline match against a friend or the computer.">
+<meta name="description" content="Wizard Chess: living stone pieces that walk the board and duel their enemies. Offline 2-player and 1-vs-computer.">
 <link rel="stylesheet" href="wizard9.css">
 <link rel="stylesheet" href="game-enhancements.css">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>♞</text></svg>">
@@ -18,9 +18,7 @@
       <div class="status-strip"><div id="status" role="status">Ivory to move</div><span id="callout" class="callout hidden"></span><span id="thinking" class="thinking hidden" aria-hidden="true">Thinking<span class="tdots"><i>.</i><i>.</i><i>.</i></span></span><span id="caption-badge" class="caption-badge" role="status"></span></div>
       <div class="material-card" aria-label="Material advantage"><div class="material-heading"><span>Material advantage</span><strong id="advantage-label">Even</strong></div><div class="advantage-track" role="img" aria-label="Material advantage bar"><span id="advantage-ivory" class="advantage-ivory"></span><span id="advantage-onyx" class="advantage-onyx"></span></div><div class="material-scores"><span><i class="team-dot ivory-dot"></i>Ivory <b id="advantage-ivory-score">0</b></span><span>Onyx <b id="advantage-onyx-score">0</b><i class="team-dot onyx-dot"></i></span></div></div>
       <div class="tray" id="tray-top" aria-label="Captured pieces"></div>
-      <div class="board-frame"><div id="stage"><div id="board" role="grid" aria-label="Chess board"></div></div>
-        <div id="duel" class="hidden" aria-hidden="true"><div class="duel-fig figure" id="duel-atk" data-expr="angry"><div class="holder"></div></div><svg class="duel-slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 80 Q48 30 90 14"/><path d="M22 90 Q54 44 94 28"/></svg><div class="duel-fig figure" id="duel-vic" data-expr="scared"><div class="holder"></div><svg class="duel-cracks" viewBox="0 0 120 190" aria-hidden="true"><path d="M60 88 L47 107 L51 127 M47 107 L33 112"/><path d="M60 88 L75 103 L70 125 M75 103 L88 108"/><path d="M60 88 L57 68 L66 52"/><path d="M60 88 L41 90 L27 101"/><path d="M60 88 L81 85 L94 95"/></svg></div><div class="duel-flash"></div></div>
-      </div>
+      <div class="board-frame"><div id="stage"><div id="board" role="grid" aria-label="Chess board"></div></div><div id="duel" class="hidden" aria-hidden="true"><div class="duel-fig figure" id="duel-atk" data-expr="angry"><div class="holder"></div></div><svg class="duel-slash" viewBox="0 0 100 100" aria-hidden="true"><path d="M12 80 Q48 30 90 14"/><path d="M22 90 Q54 44 94 28"/></svg><div class="duel-fig figure" id="duel-vic" data-expr="scared"><div class="holder"></div><svg class="duel-cracks" viewBox="0 0 120 190" aria-hidden="true"><path d="M60 88 L47 107 L51 127 M47 107 L33 112"/><path d="M60 88 L75 103 L70 125 M75 103 L88 108"/><path d="M60 88 L57 68 L66 52"/><path d="M60 88 L41 90 L27 101"/><path d="M60 88 L81 85 L94 95"/></svg></div><div class="duel-flash"></div></div></div>
       <div class="tray" id="tray-bottom" aria-label="Captured pieces"></div>
       <div class="cmd-bar"><div class="cmd-row"><span class="command-prefix" aria-hidden="true">⌁</span><input id="command" type="text" placeholder="Order a piece…" autocomplete="off" spellcheck="false" aria-label="Type a move command"><button id="command-go" class="primary" aria-label="Run command">Move</button><button data-action="undo" aria-label="Undo last move">Undo</button><button data-action="flip" aria-label="Flip board">Flip</button></div><div id="cmd-chips" class="cmd-chips" aria-label="Example commands"><button type="button" class="chip-btn" data-cmd="e2 to e4">e2 → e4</button><button type="button" class="chip-btn" data-cmd="knight to f3">Knight to f3</button><button type="button" class="chip-btn" data-cmd="pawn to d4">Pawn to d4</button><button type="button" class="chip-btn" data-cmd="castle kingside">Castle kingside</button></div><p id="command-note" class="cmd-note" role="status"></p><div id="cmd-disambig" class="cmd-disambig hidden"></div></div>
     </section>
