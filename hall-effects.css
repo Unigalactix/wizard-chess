@@ -1,0 +1,74 @@
+/* Atmospheric great-hall effects: smoke, enchanted impact, and shattered captured pieces. */
+:root { --hall-shadow: #0c0907; --hall-crimson: #a33132; }
+body {
+  background-image: radial-gradient(ellipse at 50% 108%, rgba(117, 47, 28, .12), transparent 44%),
+    radial-gradient(1000px 680px at 50% -10%, rgba(83, 68, 46, .22), transparent 68%);
+  background-attachment: fixed;
+}
+.board-frame {
+  box-shadow: 0 28px 72px rgba(0,0,0,.62), 0 0 46px rgba(126,79,43,.12),
+    inset 0 1px 0 rgba(255,244,214,.12), inset 0 0 0 2px #15110d, inset 0 0 0 4px #62543b;
+}
+.board-frame::before, .board-frame::after {
+  content:""; position:absolute; z-index:2; pointer-events:none; left:8%; right:8%; height:24px;
+  border-radius:50%; filter:blur(15px); opacity:.2; background:#b78050;
+  animation: hall-mist 7s ease-in-out infinite alternate;
+}
+.board-frame::before { bottom:7%; transform:translateX(-11%); }
+.board-frame::after { bottom:17%; opacity:.12; animation-delay:-3.5s; }
+@keyframes hall-mist { from { transform:translate3d(-12%,5px,0) scaleX(.8); } to { transform:translate3d(12%,-8px,0) scaleX(1.2); } }
+
+/* The captured-piece trays become a small display of shattered stone trophies. */
+.tray.has-fallen {
+  position:relative; min-height:36px; margin-block:1px; padding:5px 9px 5px 82px;
+  border:1px solid rgba(188,151,93,.13); border-radius:7px;
+  background:linear-gradient(90deg,rgba(24,20,15,.88),rgba(40,34,25,.5));
+}
+.tray.has-fallen::before {
+  content:"FALLEN PIECES"; position:absolute; left:9px; top:50%; transform:translateY(-50%);
+  color:#9e8a68; font:700 .53rem/1 system-ui,sans-serif; letter-spacing:.12em;
+}
+.tray .fallen-fragment { position:relative; display:inline-block; padding:0 2px; opacity:.72; transform:rotate(var(--fragment-turn,0deg)); filter:grayscale(.45) drop-shadow(0 3px 2px #0009); }
+.tray .fallen-fragment::after {
+  content:""; position:absolute; width:4px; height:12px; left:52%; top:34%;
+  background:linear-gradient(160deg,transparent 0 35%,rgba(23,18,12,.95) 38% 55%,transparent 59%);
+  transform:rotate(22deg); opacity:.82; pointer-events:none;
+}
+.tray .fallen-fragment:nth-child(3n)::before {
+  content:""; position:absolute; width:6px; height:5px; right:-2px; bottom:0;
+  border-radius:1px; background:#706452; transform:rotate(38deg); box-shadow:5px 2px 0 -1px #413a30;
+}
+
+/* In the duel cutaway, smoky impact and crimson spell flecks sell the stone strike. */
+#duel { background:radial-gradient(ellipse at 50% 75%,rgba(139,91,47,.2),transparent 42%),radial-gradient(ellipse at 50% 72%,#17120885,#070605f2 79%); }
+#duel::before {
+  content:""; position:absolute; left:10%; right:10%; bottom:0; height:44%; border-radius:50%;
+  background:radial-gradient(ellipse,rgba(124,113,96,.2),rgba(69,63,55,.08) 42%,transparent 72%);
+  filter:blur(11px); animation:duel-ground-smoke 1.8s ease-in-out infinite alternate; pointer-events:none;
+}
+@keyframes duel-ground-smoke { to { transform:translateY(-13px) scale(1.16); opacity:.45; } }
+.duel-smoke {
+  position:absolute; z-index:4; width:var(--smoke-size); height:var(--smoke-size); border-radius:50%;
+  pointer-events:none; background:radial-gradient(circle at 38% 38%,rgba(186,174,151,.32),rgba(99,93,82,.2) 48%,rgba(46,43,39,0) 74%);
+  filter:blur(5px); animation:smoke-drift 1.35s ease-out forwards;
+}
+@keyframes smoke-drift {
+  0% { opacity:0; transform:translate3d(0,14px,0) scale(.46); }
+  22% { opacity:.72; } 100% { opacity:0; transform:translate3d(var(--smoke-x),var(--smoke-y),0) scale(1.9); }
+}
+.duel-ember {
+  position:absolute; z-index:5; width:5px; height:9px; border-radius:50% 50% 45% 45%;
+  pointer-events:none; background:linear-gradient(#ffd58a,#c54432 65%,#741e24);
+  box-shadow:0 0 8px rgba(227,84,48,.85); animation:ember-burst .82s cubic-bezier(.15,.7,.25,1) forwards;
+}
+@keyframes ember-burst {
+  from { opacity:0; transform:translate(0,0) scale(.5) rotate(0); }
+  16% { opacity:1; } to { opacity:0; transform:translate(var(--ember-x),var(--ember-y)) scale(.15) rotate(160deg); }
+}
+#duel.combat-impact .duel-flash { background:radial-gradient(circle at 51% 55%,rgba(255,220,157,.9),rgba(184,52,43,.24) 23%,transparent 62%); }
+#duel.combat-impact .duel-cracks path { stroke:#36231d; stroke-width:3.1; filter:drop-shadow(0 0 5px rgba(221,66,45,.8)); }
+#duel.combat-break .duel-vic { filter:drop-shadow(0 0 15px rgba(183,54,41,.52)); }
+@media (prefers-reduced-motion:reduce) {
+  .board-frame::before,.board-frame::after,#duel::before { animation:none; }
+  .duel-smoke,.duel-ember { display:none; }
+}
